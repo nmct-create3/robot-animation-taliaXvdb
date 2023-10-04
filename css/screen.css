@@ -15,6 +15,13 @@
   --global-html-color: var(--global-color-front);
   --global-html-backgroundColor: var(--global-color-back);
   --global-selection-backgroundColor: var(--global-color-front);
+
+  /*animation*/
+  --global-animation-duration: 0.75s;
+  --global-animation-timing: ease-in-out;
+  --global-animation-iteration: infinite;
+  --global-animation-direction: alternate;
+  --global-animation-state: running;
 }
 
 /*------------------------------------*\
@@ -34,6 +41,7 @@ html {
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--global-html-backgroundColor);
 }
 
 *,
@@ -43,6 +51,11 @@ html {
 }
 
 body {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
 }
 
 /*
@@ -131,13 +144,53 @@ body {
 /*
     Component: Robot
 */
-
-.c-robot {
+.robot{
+  max-width: 300px;
 }
 
-.c-robot__shadow {
+.robot__body{
+  fill: var(--global-color-front);
 }
 
+.robot__shadow {
+  fill: #000;
+  opacity: 0.2;
+}
+
+@keyframes shadowPulse {
+  100%{
+    transform: scale(0.75);
+  }
+}
+
+@keyframes robotHover {
+  0%{
+    transform: translateY(0%);
+  }
+  100%{
+    transform: translateY(2.5%);
+  }
+}
+
+/* .robot__checkbox:checked + .robot .robot__body,
+.robot__checkbox:checked + .robot .robot__shadow {
+    animation-play-state: paused;
+}
+
+body:has(input:checked) .robot .robot__body,
+body:has(input:checked) .robot .robot__shadow{
+  animation-play-state: paused;
+}/*maakt niet uit in welke volgorde werkt sowieso*/
+
+/* .robot--css-anim #Shadow{
+  transform-origin: 50% 100%;
+  animation: shadowPulse var(--global-animation-duration) var(--global-animation-timing) var(--global-animation-iteration) var(--global-animation-direction);
+} */
+
+/* .robot--css-anim #Robot{
+  animation: robotHover var(--global-animation-duration) var(--global-animation-timing) var(--global-animation-iteration) var(--global-animation-direction);
+  animation-play-state: var(--global-animation-state);
+} */
 
 /*
     Component: Controls
